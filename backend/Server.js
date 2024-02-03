@@ -12,6 +12,15 @@ mongoose.connect("mongodb://localhost:27017/SMS").then(()=>{
 }).catch((err) => console.log(err))
 
 const teacherRoute = require('./routes/teacherRoute')
+const studentRoute = require("./routes/studentRouter")
 app.use(teacherRoute)
+app.use(studentRoute);
+// ku daris
+// app.get("/supermarket/find/:id", async (req, res) => {
+//     const singleData = await teacherRoute.find({_id : req.params.id})
+//     if(singleData)
+//     res.send(singleData)
+//   })
+
 
 app.listen(5000 , () => console.log("Server is Runing on port 5000")) 

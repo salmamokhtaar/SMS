@@ -14,6 +14,26 @@ function Teachers() {
   useEffect(() =>{
       getAllTeachers()
   },[])
+
+  const handleSearch=(id) =>{
+    const key=id.target.value
+   if(key){
+    axios.get(`http://localhost:5000/teacher/search/${key}`).then((response) =>{
+      setTeachers(response.data)
+    }).catch((error) => console.log(error))
+   }
+   else
+   getAllTeachers(); 
+  }
+
+  const deleteTeacher = (id) => {
+    axios.delete(`http://localhost:5000/delete/teacher/${id}`).then(()=>{
+      alert("Teacher Has Been Deleted..");
+      getAllTeachers();
+    }).catch((error) => console.log(error))
+  }
+
+
  
 
   return (
@@ -24,7 +44,7 @@ function Teachers() {
     <div className='py-5 flex justify-between'>
           <Link to={"/addteacher"} className=' bg-purple-700 text-2xl text-white px-6 py-3' >Add Teacher</Link>
      <form className='mr-5'>
-      <input type='text' placeholder='Search Teacher' className='w-[350px] h-[50px] border-2 border-black rounded pl-6'></input>
+      <input onChange={handleSearch} type='text' placeholder='Search Teacher' className='w-[350px] h-[50px] border-2 border-black rounded pl-6'></input>
      </form>
     </div>
     <table className='w-full '>
@@ -37,12 +57,15 @@ function Teachers() {
           <th>Gender</th>
           <th>Salary</th>
           <th>Date</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       {/* xogta */}
       <tbody>
         {
-        teacher.map((data)=>{
+
+         teacher.length>0 ?  teacher.map((data)=>{
         return  <tr className='text-center text-1xl mt-10'>
           <td>{data.id}</td>
           <td> {data.name} </td>
@@ -52,8 +75,13 @@ function Teachers() {
           <td>{data.gender}</td>
           <td>{data.salary}</td>
           <td>{data.createdAt}</td>
+          <td><Link to={`/updateteacher/${data._id}`}><i class="fa-regular fa-pen-to-square ml-5 text-purple-600 cursor-pointer"></i></Link></td>
+
+          <td><i onClick={() => deleteTeacher(data._id)} className='fa-sharp fa-solid fa-trash ml-5 text-purple-600 cursor-pointer '></i></td>
+         
         </tr>
         })
+        :<p>There is no data yet</p>
         }
       </tbody>
     </table>
