@@ -9,20 +9,20 @@ function UpdateTeacher() {
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState("");
-  const [salery, setSalery] = useState("");
+  const [salary, setSalery] = useState("");
 
   const params = useParams();
   const navigate = useNavigate();
   
      // get single data 
  const handleSingleData = () => {
-    axios.get(`http://localhost:5000/teacher/find//${params.id}`).then((response)=> {
+    axios.get(`http://localhost:5000/teacher/update/single/${params.id}`).then((response)=> {
       setId(response.data[0].id);
       setName(response.data[0].name);
       setAddress(response.data[0].address);
       setEmail(response.data[0].email);
       setGender(response.data[0].gender);
-      setSalery(response.data[0].salery);
+      setSalery(response.data[0].salary);
     
     }).catch((error)=> console.log(error))
   };
@@ -41,7 +41,7 @@ function UpdateTeacher() {
       "address": address,
       "email": email,
       "gender": gender,
-      "salery": salery
+      "salary": salary
     }).then(()=> {
       alert("Updated Successfully...");
       navigate("/teachers")
@@ -64,7 +64,7 @@ function UpdateTeacher() {
         <br/>
 
         <input value={gender} onChange={(e) => setGender(e.target.value)} className='h-[50px] w-[450px] m-3 border-purple-900 border-2 pl-5' type="text" placeholder='Enter Teacher Gender' />
-        <input value={salery} onChange={(e) => setSalery(e.target.value)} className='h-[50px] w-[450px] m-3 border-red-800 border-2 pl-5' type="text" placeholder='Enter Teacher Salery' />
+        <input value={salary} onChange={(e) => setSalery(e.target.value)} className='h-[50px] w-[450px] m-3 border-red-800 border-2 pl-5' type="text" placeholder='Enter Teacher Salery' />
         <br/>
         <button onClick={handleUpdate} className='text-white bg-purple-600 px-10 py-2  rounded-md'>Update</button>
       </form>

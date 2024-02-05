@@ -74,7 +74,7 @@ function Teachers() {
 
           <td>{data.gender}</td>
           <td>{data.salary}</td>
-          <td>{data.createdAt}</td>
+          <td> {new Date (data.createdAt).toDateString()}</td>
           <td><Link to={`/updateteacher/${data._id}`}><i class="fa-regular fa-pen-to-square ml-5 text-purple-600 cursor-pointer"></i></Link></td>
 
           <td><i onClick={() => deleteTeacher(data._id)} className='fa-sharp fa-solid fa-trash ml-5 text-purple-600 cursor-pointer '></i></td>

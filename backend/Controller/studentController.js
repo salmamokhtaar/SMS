@@ -30,8 +30,10 @@ const updateStudent = async(req, res) => {
 
 // delete
 const deleteStudent = async(req, res) => {
-    const deleteData = await studentModel.deleteOne();
-    {_id: req.params.id}
+    const deleteData = await studentModel.deleteOne(
+        {_id: req.params.id}
+    );
+   
     if(deleteData){
         res.send("Student has been  Deleted Succesfully")
     }
@@ -48,8 +50,23 @@ const SearchStudents = async(req, res) => {
      res.send(SearchData)
 
 }
+const getTotalofStudents = async (req,res) => {
+    const total = await studentModel.find().countDocuments()
+    if(total){
+    res.send({total})
+    }
+}
+// single update
+const SingleUpdate= async (req, res) => {
+    const singleData = await studentModel.find(
+        {_id : req.params.id}
+        )
+    if(singleData)
+    res.send(singleData)
+  }
+
 
 
 // export all function 
 module.exports = 
-{GetStudent, createStudent, updateStudent,deleteStudent,SearchStudents}
+{GetStudent, createStudent, updateStudent,deleteStudent,SearchStudents,getTotalofStudents,SingleUpdate}

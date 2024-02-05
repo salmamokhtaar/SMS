@@ -5,9 +5,11 @@ import Dashboard from './pages/Dashboard'
 import Students from './pages/Students'
 import Teachers from './pages/Teachers'
 import Documents from './pages/Documents'
+import Login from './pages/Login'
 import RegisterTeacher from './Components/RegisterTeacher'
 import RegisterStudent from './Components/RegisterStudents'
 import UpdateTeacher from './Components/UpdateTeacher';
+import UpdateStudent from './Components/UpdateStudent'
 function App() {
   return (
     <Sidenav>
@@ -20,6 +22,8 @@ function App() {
       <Route path='/addteacher' element={<RegisterTeacher/>}/>
       <Route path='/addstudent' element={<RegisterStudent/>}/>
       <Route path='/updateteacher/:id' element={<UpdateTeacher/>} />
+      <Route path='/updatestudent/:id' element={<UpdateStudent/>} />
+      <Route path='/login' element={<Login/>} />
 
     </Routes>
     </Sidenav>

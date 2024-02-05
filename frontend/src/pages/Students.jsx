@@ -12,7 +12,7 @@ function Students() {
     }).catch((error)=> console.log(error))
   };
   const deleteStudent = (id) => {
-    axios.delete(`http://localhost:5000//delete/student/${id}`).then(()=>{
+    axios.delete(`http://localhost:5000/delete/student/${id}`).then(()=>{
       alert("Student Has Been Deleted..");
       handleStudent();
     }).catch((error) => console.log(error))
@@ -21,6 +21,16 @@ function Students() {
   useEffect(()=> {
     handleStudent();
   },)
+  const handleSearch=(id) =>{
+    const key=id.target.value
+   if(key){
+    axios.get(`http://localhost:5000/student/search/${key}`).then((response) =>{
+      setStudent(response.data)
+    }).catch((error) => console.log(error))
+   }
+   else
+   handleStudent(); 
+  }
   
   
   return (
@@ -29,7 +39,7 @@ function Students() {
     <div className='py-5 flex justify-between'>
       <Link to={'/addstudent'} className='bg-purple-600 text-white px-5 py-3 rounded mb-3'>Add Student</Link>
       <form className='mr-5'>
-        <input className='h-[50px] w-[350px] border-black border-2 pl-5' type="text" placeholder='Search Student' />
+        <input onChange={handleSearch} className='h-[50px] w-[350px] border-black border-2 pl-5' type="text" placeholder='Search Student' />
       </form>
     </div>
     <table className='w-full'>
@@ -53,8 +63,10 @@ function Students() {
             <td>{ele.name}</td>
             <td>{ele.address}</td>
             <td>{ele.gender}</td>
-            <td>{ele.createdAt}</td>
-            <td><i onClick={() => deleteStudent(data._id)} className='fa-sharp fa-solid fa-trash ml-5 text-purple-600 cursor-pointer '></i></td>
+            <td> {new Date (ele.createdAt).toDateString()}</td>
+
+            <td><Link to={`/updatestudent/${ele._id}`}><i class="fa-regular fa-pen-to-square ml-5 text-purple-600 cursor-pointer"></i></Link></td>
+            <td><i onClick={() => deleteStudent(ele._id)} className='fa-sharp fa-solid fa-trash ml-5 text-purple-600 cursor-pointer '></i></td>
          
             </tr>
             )
