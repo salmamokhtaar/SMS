@@ -47,14 +47,16 @@ function UpdateStudent() {
     }
   return (
     <div>
-    <h1 className='ml-32 font-bold'>Update Teacher</h1>
-    <form className='mr-5 text-center pt-20'>
+    <h1 className='ml-32 font-bold'>Update Student</h1>
+    <form className=' text-center pt-20 mr-[200px]'>
     <input value={id} onChange={(e) => setId(e.target.value) } className='h-[50px] w-[450px] m-3 border-blue-600 border-2 pl-5' type="text" placeholder='Enter Student ID' />
+    <br/>
 
     <input value={name} onChange={(e)=> setName(e.target.value)} className='h-[50px] w-[450px] m-3 border-green-600 border-2 pl-5' type="text" placeholder='Enter Student Name' />
     <br/>
+    <br/>
 
-    <input value={address} onChange={(e) => setAddress(e.target.value)} className='h-[50px] w-[450px] m-3 border-black border-2 pl-5' type="text" placeholder='Enter Student Address' />
+    <input value={address} onChange={(e) => setAddress(e.target.value)} className='h-[50px] w-[450px] m-3 border-black border-2 pl-5 ' type="text" placeholder='Enter Student Address' />
    
 
     <br/>

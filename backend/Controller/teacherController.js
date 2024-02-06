@@ -47,13 +47,6 @@ const searchTeacher = async(req, res) => {
      res.send(SearchData)
 
 }
-// total teachers
-const getTotalofTeachers = async (req,res) => {
-    const total = await teacherModel.find().countDocuments()
-    if(total){
-    res.send({total})
-    }
-}
 const SinglegetUpdate= async (req, res) => {
     const singleData = await teacherModel.find(
         {_id : req.params.id}
@@ -61,6 +54,14 @@ const SinglegetUpdate= async (req, res) => {
     if(singleData)
     res.send(singleData)
   }
+// total teachers
+const getTotalofTeachers = async (req,res) => {
+    const total = await teacherModel.find().countDocuments()
+    if(total){
+    res.send({total})
+    }
+}
+
 // totalsalary
 const getTotalsalary = async (req, res) => {
     const totalSalary = await teacherModel.aggregate([

@@ -20,6 +20,7 @@ function Dashboard() {
 // salary
   const getTotalofSalary =() => {
     axios.get("http://localhost:5000/teacher/total/salary").then((response)=>{
+      console.log(response.data)
       setTotalSalary(response.data[0].salary)
     }).catch((error) => console.log(error))
 }

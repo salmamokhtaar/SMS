@@ -13,8 +13,13 @@ mongoose.connect("mongodb://localhost:27017/SMS").then(()=>{
 
 const teacherRoute = require('./routes/teacherRoute')
 const studentRoute = require("./routes/studentRouter")
+const documentRoute = require('./routes/documentRoute')
+const adminRoute = require('./routes/adminRoute')
 app.use(teacherRoute)
 app.use(studentRoute);
+app.use(documentRoute)
+
+app.use(adminRoute);
 // ku daris
 // app.get("/supermarket/find/:id", async (req, res) => {
 //     const singleData = await teacherRoute.find({_id : req.params.id})

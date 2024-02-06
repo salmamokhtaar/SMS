@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Route,Routes} from 'react-router-dom'
 import Sidenav from './Components/Sidenav'
 import Dashboard from './pages/Dashboard'
@@ -10,12 +10,30 @@ import RegisterTeacher from './Components/RegisterTeacher'
 import RegisterStudent from './Components/RegisterStudents'
 import UpdateTeacher from './Components/UpdateTeacher';
 import UpdateStudent from './Components/UpdateStudent'
+import { useNavigate } from 'react-router-dom'
 function App() {
-  return (
+  const navigate=useNavigate()
+  const isAuth= localStorage.getItem('login')
+
+  const handleRefresh = () =>{
+    if(!isAuth) {
+      navigate("/")
+    }
+
+  }
+useEffect  (() =>{
+  handleRefresh()
+},[])
+
+
+  return <>
+  { isAuth ?
+
+
     <Sidenav>
 
     <Routes>
-      <Route path='/' element={<Dashboard/>}/>
+      <Route path='/dashboard' element={<Dashboard/>}/>
       <Route path='/students' element={<Students/>}/>
       <Route path='/teachers' element={<Teachers/>}/>
       <Route path='/documents' element={<Documents/>}/>
@@ -23,12 +41,17 @@ function App() {
       <Route path='/addstudent' element={<RegisterStudent/>}/>
       <Route path='/updateteacher/:id' element={<UpdateTeacher/>} />
       <Route path='/updatestudent/:id' element={<UpdateStudent/>} />
-      <Route path='/login' element={<Login/>} />
-
     </Routes>
     </Sidenav>
+    : 
+    <Routes>
+            <Route path='/' element={<Login/>} />
 
-  )
+    </Routes>
+
+  }
+    </>
+  
 }
 
 export default App

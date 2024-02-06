@@ -15,10 +15,11 @@ router.put("/update/teacher/:id",teacherController.updateTeacher);
 router.delete("/delete/teacher/:id",teacherController.deleteTeacher);
 // total
 router.get("/total/teacher", teacherController.getTotalofTeachers)
-// update single
-router.get("/teacher/update/single/:id", teacherController.SinglegetUpdate)
 // totalSalary
 router.get("/teacher/total/salary", teacherController.getTotalsalary)
+// update single
+router.get("/teacher/update/single/:id", teacherController.SinglegetUpdate)
+
 
 
 module.exports = router;

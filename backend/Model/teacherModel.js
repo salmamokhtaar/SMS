@@ -29,4 +29,4 @@ const teacherSchema = mongoose.Schema({
   {timestamps: true}
 )
 
-module.exports = mongoose.model('XOG' , teacherSchema)
+module.exports = mongoose.model('Teachers' , teacherSchema)
